@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 01:10:02 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/06 01:24:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/06 01:33:36 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	check_elements(char **split)
 {

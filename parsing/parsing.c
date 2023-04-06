@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 00:34:35 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/06 01:18:56 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/06 01:33:29 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	check_extension(int argc, char **argv)
 {

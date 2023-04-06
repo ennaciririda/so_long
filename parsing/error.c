@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 00:39:52 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/06 00:41:19 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/06 01:33:39 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	error(char *str)
 {
