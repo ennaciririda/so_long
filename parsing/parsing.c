@@ -6,11 +6,13 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 00:34:35 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/06 01:33:29 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:25:32 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+
 
 void	check_extension(int argc, char **argv)
 {
@@ -56,14 +58,15 @@ size_t	count_lines(char **argv)
 
 char	**read_map(char **argv)
 {
-	size_t		i;
-	int		j = 0;
+	int		j;
+	int		fd;
 	char	**split;
 	char	*line;
 	char	*word;
-	int fd = open(argv[1], O_RDONLY);
-	i = count_lines(argv);
-	split = malloc (sizeof(char *) * (i + 1));
+
+	fd = open(argv[1], O_RDONLY);
+	j = 0;
+	split = malloc (sizeof(char *) * (count_lines(argv) + 1));
 	if (!split)
 		return (NULL);
 	line = get_next_line(fd);
@@ -71,16 +74,7 @@ char	**read_map(char **argv)
 		error("map is empty\n");
 	while (line)
 	{
-		i = 0;
-		word = malloc(ft_strlen(line) + 1);
-		if (!word)
-			return (NULL);
-		while (i < ft_strlen(line))
-		{
-			word[i] = line[i];
-			i++;
-		}
-		word[i] = '\0';
+		word = ft_strdup(line);
 		split[j] = word;
 		if (!split[j])
 			free_all(split);
@@ -89,6 +83,7 @@ char	**read_map(char **argv)
 		j++;
 	}
 	split[j] = NULL;
-	return split;
+	close(fd);
+	return (split);
 }
 
