@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:38:02 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/07 02:53:03 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:28:21 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	*return_dim(char **map, char c)
 {
-	int row = 0;
-	int	col = 0;
-	int	*dim =NULL;
+	int	row;
+	int	col;
+	int	*dim;
 
+	row = 0;
+	dim = NULL;
 	dim = malloc(8);
 	while (map[row])
 	{

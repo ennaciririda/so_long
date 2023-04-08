@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 00:33:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/07 03:09:13 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/07 23:42:41 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
+#include <mlx.h>
 
 
 # ifndef BUFFER_SIZE
@@ -39,10 +40,11 @@ void	error(char *str);
 void	check_rectengle(char **split);
 void	check_map_is_close(char **argv, char **split);
 void	change_map(char **map, int i, int j);
-int	*return_dim(char **map, char c);
+int		*return_dim(char **map, char c);
 void	valid_path(char **argv);
 void	exit_valid_path(char **map);
 void	coll_valid_path(char **map);
+ char	**free_all(char **split);
 
 
 

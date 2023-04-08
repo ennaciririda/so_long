@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 00:34:35 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/06 17:25:32 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:41:27 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_extension(int argc, char **argv)
 	}
 }
 
-static char	**free_all(char **split)
+char	**free_all(char **split)
 {
 	int	j;
 
@@ -50,6 +50,7 @@ size_t	count_lines(char **argv)
 	while (line)
 	{
 		count++;
+		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
