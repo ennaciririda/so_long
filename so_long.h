@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 00:33:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/07 23:42:41 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/09 20:18:01 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 55
 # endif
+
+typedef struct s_data{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*e_ptr;
+	void	*c_ptr;
+	void	*p_ptr;
+	void	*zero_ptr;
+	void	*one_ptr;
+	int		img_width;
+	char	**map;
+}	t_data;
 
 int		ft_strcmp(const char *first, const char *second);
 size_t	ft_strlen(const char *str);
