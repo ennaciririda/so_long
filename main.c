@@ -6,12 +6,17 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:55:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/09 20:39:24 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/14 23:08:10 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
+
+void fun()
+{
+	system("leaks so_long");
+}
 
 void	check_elemnt(void *elm)
 {
@@ -19,55 +24,72 @@ void	check_elemnt(void *elm)
 		exit(EXIT_FAILURE);
 }
 
-t_data	init_str(t_data data)
+t_data	*init_str(char **split)
 {
-	data.mlx_ptr = NULL;
-	data.win_ptr = NULL;
-	data.e_ptr = NULL;
-	data.c_ptr = NULL;
-	data.p_ptr = NULL;
-	data.zero_ptr = NULL;
-	data.one_ptr = NULL;
-	data.img_width = 0;
-	data.map = NULL;
+	t_data *data;
+	int *dim;
+	dim = return_dim(split,'P');
+	data = malloc(sizeof(t_data));
+	if (!data)
+		exit(1);
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1425, 600, "so_long");
+	data->e_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/E.xpm", &data->img_width, &data->img_width);
+	data->c_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/C.xpm", &data->img_width, &data->img_width);
+	data->p_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/P.xpm", &data->img_width, &data->img_width);
+	data->zero_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/0.xpm", &data->img_width, &data->img_width);
+	data->one_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/1.xpm", &data->img_width, &data->img_width);
+	data->img_width = 0;
+	data->map = split;
+	data->count = 0;
+	data->p_x = dim[0];
+	data->p_y = dim[1];
+	data->col_n = count_coll(split);
 	return data;
 }
 
-int		move_image(int keycode, t_data data)
+int		move_image(int keycode, t_data *data)
 {
-	int *dim;
-	dim = return_dim( data.map,'P');
-	if (keycode == 123) // left arrow
+	if (keycode == 53)
+		exit(EXIT_SUCCESS);
+	else if (keycode == 123) // left
 	{
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.zero_ptr, dim[0], dim[1]);
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.p_ptr, dim[0] -= 1, dim[1]);
+		move_left(data);
+		draw_map(data);
 	}
-	else if (keycode == 124) // right arrow
+	else if (keycode == 124) // right
 	{
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.zero_ptr, dim[0], dim[1]);
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.p_ptr, dim[0] += 1, dim[1]);
+		move_right(data);
+		draw_map(data);
 	}
-	else if (keycode == 125) // down arrow
+	else if (keycode == 125) // down
 	{
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.zero_ptr, dim[0], dim[1]);
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.p_ptr, dim[0], dim[1] += 1);
+		move_bottom(data);
+		draw_map(data);
 	}
-	else if (keycode == 126) // up arrow
+	else if (keycode == 126) // up
 	{
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.zero_ptr, dim[0], dim[1]);
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.p_ptr, dim[0], dim[1] -= 1);
+		move_top(data);
+		draw_map(data);
 	}
 	return (0);
 }
 
+int	close_window(t_data *data)
+{
+	free_all(data->map);
+	exit(EXIT_SUCCESS);
+	return 0;
+}
+
+
 int main(int argc, char **argv)
 {
 	char **split;
-	t_data	data;
+	t_data	*data;
 
 	int i = 0;
 	int j = 0;
-	data = init_str(data);
 	if (argc == 2)
 	{
 		check_extension(argc, argv);
@@ -76,52 +98,11 @@ int main(int argc, char **argv)
 		check_map_is_close(argv, split);
 		check_elements(split);
 		valid_path(argv);
-		data.mlx_ptr = mlx_init();
-		check_elemnt(data.mlx_ptr);
-		data.win_ptr = mlx_new_window(data.mlx_ptr, 1425, 600, "so_long");
-		check_elemnt(data.win_ptr);
-		data.e_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "textures/E.xpm", &data.img_width, &data.img_width);
-		check_elemnt(data.e_ptr);
-		data.c_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "textures/C.xpm", &data.img_width, &data.img_width);
-		check_elemnt(data.c_ptr);
-		data.p_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "textures/P.xpm", &data.img_width, &data.img_width);
-		check_elemnt(data.p_ptr);
-		data.zero_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "textures/0.xpm", &data.img_width, &data.img_width);
-		check_elemnt(data.zero_ptr);
-		data.one_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "textures/1.xpm", &data.img_width, &data.img_width);
-		check_elemnt(data.one_ptr);
-		data.map = split;
-		while (split[i])
-		{
-			j = 0;
-			while (split[i][j])
-			{
-				if (split[i][j] == '0')
-					mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.zero_ptr, j *75, i *75);
-				if (split[i][j] == '1')
-					mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.one_ptr, j * 75, i * 75);
-				if (split[i][j] == 'P')
-				{
-					mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.zero_ptr, j *75, i *75);
-					mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.p_ptr, j * 75, i * 75);
-				}
-				if (split[i][j] == 'C')
-				{
-					mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.zero_ptr, j *75, i *75);
-					mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.c_ptr, j * 75, i * 75);
-				}
-				if (split[i][j] == 'E')
-				{
-					mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.zero_ptr, j *75, i *75);
-					mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.e_ptr, j * 75, i * 75);
-				}
-				j++;
-			}
-			i++;
-		}
-		mlx_hook(data.win_ptr, 2, (1L<<2), move_image, &data);
-		// mlx_hook(win_ptr, 17, 0, close_window, &img);
-		mlx_loop(data.mlx_ptr);
+		data = init_str(split);
+		draw_map(data);
+		mlx_hook(data->win_ptr, 2, 0, move_image, data);
+		mlx_hook(data->win_ptr, 17, 0, close_window, data);
+		mlx_loop(data->mlx_ptr);
 	}
 	return 0;
 }

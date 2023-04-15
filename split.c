@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 21:37:48 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/05 21:38:07 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:02:34 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,3 +95,13 @@ char	**ft_split(char const *s, char c)
 	split = spl(split, s, c);
 	return (split);
 }
+
+int main()
+{
+	char **split;
+	split = ft_split("hello guys",' ');
+	printf("%c\n",split[1][3]);
+}
+
+hello
+guys

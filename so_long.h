@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 00:33:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/09 20:18:01 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:23:40 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct s_data{
 	void	*zero_ptr;
 	void	*one_ptr;
 	int		img_width;
+	int		p_x;
+	int		p_y;
+	int		count;
+	int		col_n;
 	char	**map;
 }	t_data;
 
@@ -56,8 +60,15 @@ int		*return_dim(char **map, char c);
 void	valid_path(char **argv);
 void	exit_valid_path(char **map);
 void	coll_valid_path(char **map);
- char	**free_all(char **split);
-
+char	**free_all(char **split);
+int	count_coll(char **map);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	move_top(t_data *data);
+void	move_bottom(t_data *data);
+void	draw_map(t_data *data);
+void	ft_putnbr(int n);
+void	ft_putchar(char c);
 
 
 #endif
