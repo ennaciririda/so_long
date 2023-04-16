@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 00:33:49 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/16 16:04:11 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:41:25 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@ void	move_bottom(t_data *data);
 void	draw_map(t_data *data);
 void	ft_putnbr(int n);
 void	ft_putchar(char c);
+void	check_elemnt(void *m_p, void *win_p, void *e_p, void *f_p);
+void	check_elemnt_1(void *c_p, void *p_p, void *z_p, void *o_p);
 
 #endif

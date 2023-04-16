@@ -6,18 +6,12 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:55:39 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/16 16:00:23 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:40:52 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
-
-void	check_elemnt(void *elm)
-{
-	if (!elm)
-		exit(EXIT_FAILURE);
-}
 
 t_data	*init_str(char **split)
 {
@@ -33,11 +27,13 @@ t_data	*init_str(char **split)
 	d->e_p = mlx_xpm_file_to_image(d->m_p, "textures/E.xpm", &d->i_w, &d->i_w);
 	d->f_p = mlx_xpm_file_to_image(d->m_p, "textures/O.xpm", &d->i_w, &d->i_w);
 	d->c_p = mlx_xpm_file_to_image(d->m_p, "textures/C.xpm", &d->i_w, &d->i_w);
+	check_elemnt(d->m_p, d->win_p, d->e_p, d->f_p);
 	d->p_p = mlx_xpm_file_to_image(d->m_p, "textures/P.xpm", &d->i_w, &d->i_w);
 	d->z_p = mlx_xpm_file_to_image(d->m_p, "textures/0.xpm", &d->i_w, &d->i_w);
 	d->o_p = mlx_xpm_file_to_image(d->m_p, "textures/1.xpm", &d->i_w, &d->i_w);
-	d->i_w = 0;
 	d->map = split;
+	check_elemnt_1(d->c_p, d->p_p, d->z_p, d->o_p);
+	d->i_w = 0;
 	d->count = 0;
 	d->p_x = dim[0];
 	d->p_y = dim[1];
