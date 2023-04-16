@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 23:51:24 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/11 03:15:45 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/15 20:09:02 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	count_coll(char **map)
 	int	count;
 
 	i = 0;
+	count = 0;
 	while (map[i])
 	{
 		j = 0;

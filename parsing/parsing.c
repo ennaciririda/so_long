@@ -6,13 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 00:34:35 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/07 17:41:27 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/16 16:31:27 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-
 
 void	check_extension(int argc, char **argv)
 {
@@ -43,8 +41,10 @@ char	**free_all(char **split)
 size_t	count_lines(char **argv)
 {
 	char	*line;
-	size_t		count;
-	int fd = open(argv[1], O_RDONLY);
+	size_t	count;
+	int		fd;
+
+	fd = open(argv[1], O_RDONLY);
 	count = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -54,22 +54,16 @@ size_t	count_lines(char **argv)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return count;
+	return (count);
 }
 
-char	**read_map(char **argv)
+char	**read_map_part(char **split, int fd)
 {
-	int		j;
-	int		fd;
-	char	**split;
 	char	*line;
 	char	*word;
+	int		j;
 
-	fd = open(argv[1], O_RDONLY);
 	j = 0;
-	split = malloc (sizeof(char *) * (count_lines(argv) + 1));
-	if (!split)
-		return (NULL);
 	line = get_next_line(fd);
 	if (!line)
 		error("map is empty\n");
@@ -77,14 +71,27 @@ char	**read_map(char **argv)
 	{
 		word = ft_strdup(line);
 		split[j] = word;
-		if (!split[j])
+		if (!split[j++])
 			free_all(split);
 		free(line);
 		line = get_next_line(fd);
-		j++;
 	}
 	split[j] = NULL;
-	close(fd);
 	return (split);
 }
 
+char	**read_map(char **argv)
+{
+	int		j;
+	int		fd;
+	char	**split;
+
+	fd = open(argv[1], O_RDONLY);
+	j = 0;
+	split = malloc (sizeof(char *) * (count_lines(argv) + 1));
+	if (!split)
+		return (NULL);
+	split = read_map_part(split, fd);
+	close(fd);
+	return (split);
+}

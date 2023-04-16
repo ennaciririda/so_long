@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 22:11:37 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/14 22:23:33 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/16 13:58:25 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	ft_putchar(char c)
 {

@@ -6,7 +6,7 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:24:30 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/07 17:43:53 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/16 16:34:23 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,27 @@ void	coll_valid_path(char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] == 'C')
-				error("Error : invalid path about collectable");
+				error("Error : invalid path\n");
 			j++;
 		}
 		i++;
 	}
 }
+
 void	exit_valid_path(char **map)
 {
-	int *dim;
+	int	*dim;
 
 	dim = return_dim(map, 'E');
 	if (map[dim[0]][dim[1] + 1] != 'P' && map[dim[0]][dim[1] - 1] != 'P'
 	&& map[dim[0] +1][dim[1]] != 'P' && map[dim[0] - 1][dim[1]] != 'P')
 	{
 		free(dim);
-		error("Error : invalid path about Exit");
+		error("Error : invalid path\n");
 	}
 	free(dim);
 }
+
 void	valid_path(char **argv)
 {
 	char	**map;
@@ -51,15 +53,17 @@ void	valid_path(char **argv)
 	i = 0;
 	map = read_map(argv);
 	change_map(map, 0, 0);
-	exit_valid_path(map);
 	coll_valid_path(map);
+	exit_valid_path(map);
 	free_all(map);
 }
+
 void	help_fun(int i, int j, char **map)
 {
 	map[i][j] = 'P';
 	change_map(map, i, j);
 }
+
 void	change_map(char **map, int i, int j)
 {
 	i = 0;

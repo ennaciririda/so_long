@@ -6,11 +6,11 @@
 /*   By: rennacir <rennacir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 00:02:29 by rennacir          #+#    #+#             */
-/*   Updated: 2023/04/14 22:37:36 by rennacir         ###   ########.fr       */
+/*   Updated: 2023/04/16 13:57:49 by rennacir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	move_left(t_data *data)
 {
